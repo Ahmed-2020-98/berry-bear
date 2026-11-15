@@ -25,7 +25,7 @@
             <svg class="floaty-bear b2"><use href="#gummy"></use></svg>
             <svg class="floaty-bear b3"><use href="#gummy"></use></svg>
             <svg class="floaty-bear b4"><use href="#gummy"></use></svg>
-            <img src="{{ media_url($h('hero_image'), 'life-pink.jpeg') }}" alt="دباديب الجيلي من بيري بير في أجواء طبيعية" class="hero-pack">
+            @php $heroImg = media_url($h('hero_image'), 'life-pink.jpeg'); @endphp<img src="{{ $heroImg }}"{{ img_srcset($heroImg, '(max-width: 900px) 78vw, 380px') }} fetchpriority="high" alt="دباديب الجيلي من بيري بير في أجواء طبيعية" class="hero-pack">
         </div>
     </div>
     <div class="wave-divider" aria-hidden="true">
@@ -38,7 +38,7 @@
 <section class="section" id="about">
     <div class="container about-wrap">
         <div class="about-visual reveal">
-            <div class="frame photo"><img src="{{ media_url($h('about_image'), 'life-brown.jpeg') }}" alt="منتجات بيري بير في أجواء البستان"></div>
+            <div class="frame photo">@php $aboutImg = media_url($h('about_image'), 'life-brown.jpeg'); @endphp<img src="{{ $aboutImg }}"{{ img_srcset($aboutImg, '(max-width: 900px) 92vw, 520px') }} loading="lazy" alt="منتجات بيري بير في أجواء البستان"></div>
             <div class="sticker"><b>{{ $h('about_sticker_num') }}</b> {{ $h('about_sticker_text') }}</div>
         </div>
         <div class="about-text reveal d1">
@@ -123,7 +123,7 @@
         <div class="gallery-grid">
             @foreach ($h('gallery_images') as $i => $g)
                 @php $src = media_url($g['img'] ?? '', 'life-pink.jpeg'); @endphp
-                <div class="gitem{{ $i === 0 ? ' big' : '' }} photo" data-lightbox data-img="{{ $src }}" data-title="{{ $g['title'] ?? '' }}" data-cap="{{ $g['cap'] ?? '' }}"><img src="{{ $src }}" alt="{{ $g['title'] ?? '' }}"></div>
+                <div class="gitem{{ $i === 0 ? ' big' : '' }} photo" data-lightbox data-img="{{ $src }}" data-title="{{ $g['title'] ?? '' }}" data-cap="{{ $g['cap'] ?? '' }}"><img src="{{ $src }}"{{ img_srcset($src, $i === 0 ? '(max-width: 900px) 92vw, 600px' : '(max-width: 900px) 46vw, 300px') }} loading="lazy" alt="{{ $g['title'] ?? '' }}"></div>
             @endforeach
         </div>
     </div>

@@ -106,6 +106,7 @@ class MediaItem extends Model
         static::deleted(function (MediaItem $m) {
             if (! static::query()->where('path', $m->path)->exists()) {
                 Storage::disk('public')->delete($m->path);
+                \App\Support\ImageVariants::purge($m->path);
             }
         });
     }

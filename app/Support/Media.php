@@ -43,6 +43,11 @@ class Media
         $path = $file->storeAs('uploads/library/'.date('Y/m'), $name, 'public');
         [$w, $h] = static::dimensions($file->getRealPath());
 
+        // Pre-build the resized copies once the response has been sent.
+        if (! app()->runningUnitTests()) {
+            app()->terminating(fn () => ImageVariants::warm($path));
+        }
+
         return MediaItem::create([
             'original_name' => Str::limit($file->getClientOriginalName(), 240, ''),
             'filename' => $name,

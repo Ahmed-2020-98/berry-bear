@@ -31,7 +31,7 @@
             @if ($plType === 'video' && $plVideo)
                 <video class="pre-media" autoplay muted playsinline preload="auto"><source src="{{ $plVideo }}"></video>
             @elseif ($plType === 'image' && $plImage)
-                <img src="{{ $plImage }}" alt="Berry Bear" class="pre-media">
+                <img src="{{ $plImage }}"{{ img_srcset($plImage, '320px') }} alt="Berry Bear" class="pre-media">
             @else
                 <img src="{{ theme_img('logo.png') }}" alt="Berry Bear" class="pre-logo">
             @endif
@@ -43,7 +43,7 @@
     <header class="site-header">
         <div class="container nav">
             <a href="{{ url('/') }}" class="brand" aria-label="Berry Bear الصفحة الرئيسية">
-                <img src="{{ media_url(setting('logo', ''), 'logo.png') }}" alt="Berry Bear — Sour Gummy">
+                @php $logoImg = media_url(setting('logo', ''), 'logo.png'); @endphp<img src="{{ $logoImg }}"{{ img_srcset($logoImg, '110px') }} alt="Berry Bear — Sour Gummy">
             </a>
 
             <ul class="nav-menu">
@@ -87,7 +87,7 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <img src="{{ media_url(setting('logo', ''), 'logo.png') }}" alt="Berry Bear — Sour Gummy">
+                    <img src="{{ $logoImg }}"{{ img_srcset($logoImg, '110px') }} loading="lazy" alt="Berry Bear — Sour Gummy">
                     <p>{{ setting('footer_about', 'بيري بير — علامة حلوى الجيلي المرحة. دباديب وحلوى حامضة بنكهات الفواكه الحقيقية، متعة نظيفة يثق بها الجميع.') }}</p>
                     <div class="footer-social">
                         @foreach (\App\Support\Social::links() as $s){{ \App\Support\Social::link($s) }}@endforeach

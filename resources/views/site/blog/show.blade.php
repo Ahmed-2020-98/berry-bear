@@ -9,7 +9,7 @@
 <article class="post-single">
     <div class="container">
         @if ($post->cover)
-            <div class="post-cover"><img src="{{ $post->coverUrl() }}" alt="{{ $post->title }}"></div>
+            <div class="post-cover photo-fit"><img class="photo-fit-bg" src="{{ $post->coverUrl() }}"{{ img_srcset($post->coverUrl(), '320px') }} alt="" aria-hidden="true"><img class="photo-fit-main" src="{{ $post->coverUrl() }}"{{ img_srcset($post->coverUrl(), '(max-width: 800px) 94vw, 760px') }} alt="{{ $post->title }}"></div>
         @endif
         <div class="post-body">{{ safe_html($post->body) }}</div>
         <div class="post-nav">

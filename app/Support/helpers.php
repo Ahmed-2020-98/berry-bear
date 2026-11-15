@@ -155,3 +155,14 @@ if (! function_exists('reserved_slugs')) {
         return ['admin', 'about', 'products', 'product', 'collection', 'faqs', 'contact', 'blog', 'category', 'search', 'storage', 'theme', 'build', 'up', 'wp-admin', 'wp-login.php'];
     }
 }
+
+if (! function_exists('img_srcset')) {
+    /**
+     * ` srcset="…" sizes="…"` for an uploaded image URL/path, so the browser picks a
+     * resized WebP that matches the section it is shown in. Empty for theme assets.
+     */
+    function img_srcset(?string $url, string $sizes): HtmlString
+    {
+        return \App\Support\ImageVariants::attributes((string) $url, $sizes);
+    }
+}

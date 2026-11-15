@@ -10,7 +10,7 @@
 <section class="section">
     <div class="container about-wrap">
         <div class="about-visual reveal">
-            <div class="frame photo"><img src="{{ media_url($a('ab_story_image'), 'life-blue.jpeg') }}" alt="منتجات بيري بير في أجواء البستان"></div>
+            <div class="frame photo">@php $abImg = media_url($a('ab_story_image'), 'life-blue.jpeg'); @endphp<img src="{{ $abImg }}"{{ img_srcset($abImg, '(max-width: 900px) 92vw, 520px') }} alt="منتجات بيري بير في أجواء البستان"></div>
             <div class="sticker"><b>{{ $a('ab_sticker_num') }}</b> {{ $a('ab_sticker_text') }}</div>
         </div>
         <div class="about-text reveal d1">

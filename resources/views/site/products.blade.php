@@ -22,8 +22,10 @@
         <x-site.sec-head :eyebrow="$p('sv_eyebrow')" :title="$p('sv_title')" :sub="$p('sv_sub')" />
         @foreach ($p('services') as $i => $sv)
             <div class="srow{{ $i % 2 === 1 ? ' reverse' : '' }} reveal">
-                <div class="srow-media photo">
-                    <img src="{{ media_url($sv['img'] ?? '', 'life-purple.jpeg') }}" alt="{{ $sv['title'] ?? '' }}">
+                @php $svImg = media_url($sv['img'] ?? '', 'life-purple.jpeg'); @endphp
+                <div class="srow-media photo photo-fit">
+                    <img class="photo-fit-bg" src="{{ $svImg }}"{{ img_srcset($svImg, '320px') }} loading="lazy" alt="" aria-hidden="true">
+                    <img class="photo-fit-main" src="{{ $svImg }}"{{ img_srcset($svImg, '(max-width: 900px) 92vw, 560px') }} loading="lazy" alt="{{ $sv['title'] ?? '' }}">
                 </div>
                 <div class="srow-text">
                     <div class="srow-icon">{{ $sv['icon'] ?? '' }}</div>

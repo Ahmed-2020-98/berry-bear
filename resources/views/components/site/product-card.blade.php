@@ -4,7 +4,7 @@
     <div class="pcard-inner">
         <div class="pcard-face pcard-front">
             <div class="pcard-media photo">
-                <img src="{{ $img }}" alt="{{ $title }}" loading="lazy">
+                <img src="{{ $img }}"{{ img_srcset($img, '(max-width: 640px) 90vw, 340px') }} alt="{{ $title }}" loading="lazy">
             </div>
             <div class="pcard-body">
                 <h3>{{ $title }}</h3>
@@ -18,7 +18,7 @@
         </div>
         <div class="pcard-face pcard-back">
             <div class="pcard-back-media">
-                <img src="{{ $backImg ?: $img }}" alt="{{ $title.($backImg ? ' — كرتونة' : '') }}" loading="lazy">
+                <img src="{{ $backImg ?: $img }}"{{ img_srcset($backImg ?: $img, '300px') }} alt="{{ $title.($backImg ? ' — كرتونة' : '') }}" loading="lazy">
             </div>
             @if ($backImg)
                 <span class="pcard-back-tag">متوفّر بالجملة · كرتونة 24 قطعة</span>

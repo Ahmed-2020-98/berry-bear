@@ -10,11 +10,11 @@
     <div class="container about-wrap">
         <div class="about-visual reveal">
             <div class="frame photo">
-                <img src="{{ $product->imageUrl() }}" alt="{{ $product->title }}">
+                <img src="{{ $product->imageUrl() }}"{{ img_srcset($product->imageUrl(), '(max-width: 900px) 92vw, 560px') }} alt="{{ $product->title }}">
             </div>
             @if ($product->cartonUrl())
                 <div class="carton-frame">
-                    <img src="{{ $product->cartonUrl() }}" alt="{{ $product->title }} — كرتونة">
+                    <img src="{{ $product->cartonUrl() }}"{{ img_srcset($product->cartonUrl(), '(max-width: 900px) 60vw, 320px') }} loading="lazy" alt="{{ $product->title }} — كرتونة">
                     <span>متوفّر بالجملة</span>
                 </div>
             @endif
